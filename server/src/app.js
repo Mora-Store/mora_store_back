@@ -32,6 +32,9 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Ping route (para mantener servidor despierto en Render)
+app.get('/ping', (req, res) => res.status(200).send('OK'));
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
